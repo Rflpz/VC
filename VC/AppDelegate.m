@@ -7,7 +7,10 @@
 //
 
 #import "AppDelegate.h"
-
+#import "AFNetworkActivityIndicatorManager.h"
+#import "RLManager.h"
+#import "RLTravelsController.h"
+#import "RLGalleryController.h"
 @interface AppDelegate ()
 
 @end
@@ -16,10 +19,42 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
+    _window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+    _tabController = [[UITabBarController alloc]init];
+    _tabController.tabBar.translucent = NO;
+    
+    RLTravelsController *travelsController = [[RLTravelsController alloc] initWithNibName:@"RLTravelsController" bundle:nil];
+    
+    RLGalleryController *galleryController = [[RLGalleryController alloc] initWithNibName:@"RLGalleryController" bundle:nil];
+
+    UITabBarItem *tabTravels = [[UITabBarItem alloc]initWithTitle:@"VIAJES" image:nil tag:0];
+    [tabTravels setImage: [[[RLManager sharedInstance] imageWithImage:[UIImage imageNamed:@"tr_u"] scaledToSize:CGSizeMake(20,20)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [tabTravels setSelectedImage: [[[RLManager sharedInstance] imageWithImage:[UIImage imageNamed:@"tr_s"] scaledToSize:CGSizeMake(20,20)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    travelsController.tabBarItem = tabTravels;
+    
+    UITabBarItem *tabGallery = [[UITabBarItem alloc]initWithTitle:@"GALERIA" image:nil tag:0];
+    [tabGallery setImage: [[[RLManager sharedInstance] imageWithImage:[UIImage imageNamed:@"ga_u"] scaledToSize:CGSizeMake(20,20)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    [tabGallery setSelectedImage: [[[RLManager sharedInstance] imageWithImage:[UIImage imageNamed:@"ga_s"] scaledToSize:CGSizeMake(20,20)] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal]];
+    galleryController.tabBarItem = tabGallery;
+    
+    UINavigationController *navTravels = [[UINavigationController alloc]initWithNibName:@"UINavigationController" bundle:nil];
+    UINavigationController *navGallery = [[UINavigationController alloc]initWithNibName:@"UINavigationController" bundle:nil];
+
+    [navTravels pushViewController:travelsController animated:YES];
+    [navGallery pushViewController:galleryController animated:YES];
+
+    _tabController.viewControllers = [NSArray arrayWithObjects:navTravels,navGallery,nil];
+    
+    [[UITabBar appearance] setBarTintColor:[[RLManager sharedInstance] colorFromHexString:@"#FFFFFF"]];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Roboto-Bold" size:10.0f], NSFontAttributeName,  [[RLManager sharedInstance] colorFromHexString:@"#808080"], NSForegroundColorAttributeName,nil] forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Roboto-Bold" size:10.0f], NSFontAttributeName,  [[RLManager sharedInstance] colorFromHexString:@"#8e54e9"], NSForegroundColorAttributeName,nil] forState:UIControlStateSelected];
+    
+    _window.rootViewController = _tabController;
+    [_window setTintColor:[[RLManager sharedInstance] colorFromHexString:@"#512da8"]];
+    
+    _window.backgroundColor = [UIColor whiteColor];
+    [_window makeKeyAndVisible];
     return YES;
 }
 
