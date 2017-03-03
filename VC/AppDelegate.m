@@ -45,13 +45,13 @@
     [navGallery pushViewController:galleryController animated:YES];
 
     _tabController.viewControllers = [NSArray arrayWithObjects:navTravels,navGallery,nil];
-    
-    [[UITabBar appearance] setBarTintColor:[[RLManager sharedInstance] colorFromHexString:@"#FFFFFF"]];
-    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Roboto-Bold" size:10.0f], NSFontAttributeName,  [[RLManager sharedInstance] colorFromHexString:@"#808080"], NSForegroundColorAttributeName,nil] forState:UIControlStateNormal];
-    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Roboto-Bold" size:10.0f], NSFontAttributeName,  [[RLManager sharedInstance] colorFromHexString:@"#8e54e9"], NSForegroundColorAttributeName,nil] forState:UIControlStateSelected];
+     
+    [[UITabBar appearance] setBarTintColor:[[RLManager sharedInstance] colorFromHexString:@"#ffffff"]];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Avenir-Medium" size:10.0f], NSFontAttributeName,  [[RLManager sharedInstance] colorFromHexString:@"#808080"], NSForegroundColorAttributeName,nil] forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"Avenir-Medium" size:10.0f], NSFontAttributeName,  [[RLManager sharedInstance] colorFromHexString:@"#000000"], NSForegroundColorAttributeName,nil] forState:UIControlStateSelected];
     
     _window.rootViewController = _tabController;
-    [_window setTintColor:[[RLManager sharedInstance] colorFromHexString:@"#512da8"]];
+    [_window setTintColor:[[RLManager sharedInstance] colorFromHexString:@"#000000"]];
     
     _window.backgroundColor = [UIColor whiteColor];
     [_window makeKeyAndVisible];

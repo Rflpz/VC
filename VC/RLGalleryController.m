@@ -18,9 +18,10 @@
     [super viewDidLoad];
     [self.view layoutIfNeeded];
     self.title = @"GALERIA";
-    self.navigationController.navigationBar.barTintColor = [[RLManager sharedInstance] colorFromHexString:@"#FFFFFF"];
+    self.navigationController.navigationBar.barTintColor = [[RLManager sharedInstance] colorFromHexString:@"#ffffff"];
     self.navigationController.navigationBar.translucent = NO;
-    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[[RLManager sharedInstance]  colorFromHexString:@"#212121"], NSForegroundColorAttributeName, [UIFont fontWithName:@"Roboto-Regular" size:16], NSFontAttributeName, nil];
+    self.navigationController.navigationBar.titleTextAttributes = [NSDictionary dictionaryWithObjectsAndKeys:[[RLManager sharedInstance]  colorFromHexString:@"#212121"], NSForegroundColorAttributeName, [UIFont fontWithName:@"Avenir-Medium" size:16], NSFontAttributeName, nil];
+    
 }
 
 @end
